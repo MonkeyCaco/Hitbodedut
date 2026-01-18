@@ -1,0 +1,293 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Hitbodedut</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Courier+Prime&family=Frank+Ruhl+Libre:wght@300;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg: #f4f1ea;
+            --txt: #1a2a3a;
+            --acc: #003366;
+            --gold: #bfa05f;
+            --card: #ffffff;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0d1117; 
+            --txt: #e6edf3;
+            --acc: #58a6ff;
+            --gold: #d2a106;
+            --card: #161b22;
+        }
+
+        * { 
+            box-sizing: border-box; 
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Frank Ruhl Libre', serif;
+            background-color: var(--bg);
+            color: var(--txt);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.5s;
+            overflow: hidden;
+        }
+
+        /* Top Bar exclusiva para o tema */
+        .top-utils {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        .theme-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--gold);
+            cursor: pointer;
+        }
+
+        .main-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px 20px 20px 20px;
+            justify-content: center;
+        }
+
+        /* Home Centralizada */
+        #home-ui {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            text-align: center;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .magen-david {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            color: var(--gold);
+            letter-spacing: 5px;
+            margin: 0;
+        }
+
+        .date {
+            font-size: 0.75rem;
+            opacity: 0.7;
+            text-transform: uppercase;
+            font-family: 'Cinzel', serif;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+        }
+
+        .verse-box {
+            border-top: 1px solid var(--gold);
+            border-bottom: 1px solid var(--gold);
+            padding: 30px 15px;
+            margin-bottom: 40px;
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            width: 100%;
+        }
+
+        .btn {
+            background: none;
+            border: 1px solid var(--acc);
+            color: var(--acc);
+            padding: 15px 35px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .btn:active {
+            background: var(--acc);
+            color: var(--bg);
+        }
+
+        /* Tela de Escrita Limpa */
+        #prayer-ui {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            padding-top: 20px;
+        }
+
+        .prayer-header {
+            display: flex;
+            justify-content: flex-end; /* Botão de enviar à direita */
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        textarea {
+            width: 100%;
+            flex: 1;
+            background: var(--card);
+            border: 1px solid var(--gold);
+            padding: 20px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 18px; 
+            color: var(--txt);
+            border-radius: 8px;
+            outline: none;
+            resize: none;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.02);
+        }
+
+        /* Mensagem de Sucesso Destacada */
+        #success {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            height: 100%;
+            animation: fadeIn 1.5s ease;
+        }
+
+        #success h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        #success p {
+            font-size: 1.2rem;
+            font-style: italic;
+            max-width: 80%;
+            line-height: 1.5;
+        }
+
+        /* Efeito de Fogo */
+        @keyframes burnEffect {
+            0% { opacity: 1; filter: blur(0); transform: scale(1); }
+            30% { color: #ff4500; text-shadow: 0 0 15px orange; }
+            100% { transform: translateY(-120px) scale(1.1); filter: blur(25px); opacity: 0; }
+        }
+
+        .burning {
+            animation: burnEffect 2.8s forwards ease-in;
+            pointer-events: none;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    </style>
+</head>
+<body>
+
+    <div class="top-utils">
+        <button class="theme-btn" onclick="toggleTheme()" id="t-icon">☾</button>
+    </div>
+
+    <div class="main-container">
+        
+        <!-- HOME CENTRALIZADA -->
+        <div id="home-ui">
+            <div class="magen-david">✡</div>
+            <h1>HITBODEDUT</h1>
+            <div class="date" id="date-el"></div>
+            <div class="verse-box" id="verse-el">"Conectando..."</div>
+            <button class="btn" onclick="goPrayer()">Conversar com Deus</button>
+        </div>
+
+        <!-- TELA ORAÇÃO (SEM TEXTOS EXTRAS) -->
+        <div id="prayer-ui">
+            <div class="prayer-header">
+                <button class="btn" onclick="sendIt()" id="send-btn">Enviar Oração</button>
+            </div>
+            <textarea id="msg-input" placeholder="Diga o que está no seu coração..."></textarea>
+        </div>
+
+        <!-- SUCESSO DESTACADO -->
+        <div id="success">
+            <div style="font-size: 2rem; color: var(--gold); margin-bottom: 20px;">✡</div>
+            <h2>Oração Enviada</h2>
+            <p>Sua oração ascendeu aos céus como incenso suave.</p>
+        </div>
+    </div>
+
+    <script>
+        // Data e Versos
+        const options = { weekday: 'long', day: 'numeric', month: 'long' };
+        document.getElementById('date-el').innerText = new Date().toLocaleDateString('pt-BR', options);
+        
+        const vs = [
+            "O Senhor está perto dos que têm o coração quebrantado. (Salmos 34:18)",
+            "Aquietai-vos, e sabei que eu sou Deus. (Salmos 46:10)",
+            "Espera no Senhor, anima-te. (Salmos 27:14)",
+            "O Senhor é o meu pastor, nada me faltará. (Salmos 23:1)",
+            "Confia no Senhor de todo o teu coração. (Provérbios 3:5)",
+            "Lâmpada para os meus pés é a tua palavra. (Salmos 119:105)"
+        ];
+        document.getElementById('verse-el').innerText = vs[Math.floor(Math.random()*vs.length)];
+
+        function goPrayer() {
+            document.getElementById('home-ui').style.display = 'none';
+            document.getElementById('prayer-ui').style.display = 'flex';
+            // Timeout para garantir foco no mobile
+            setTimeout(() => document.getElementById('msg-input').focus(), 200);
+        }
+
+        function sendIt() {
+            const input = document.getElementById('msg-input');
+            const btn = document.getElementById('send-btn');
+            if(!input.value.trim()) return;
+
+            input.classList.add('burning');
+            btn.style.display = 'none';
+
+            setTimeout(() => {
+                document.getElementById('prayer-ui').style.display = 'none';
+                document.getElementById('success').style.display = 'flex';
+                // Retorna à home após um tempo para nova conversa
+                setTimeout(() => location.reload(), 5000);
+            }, 2600);
+        }
+
+        let isDark = false;
+        function toggleTheme() {
+            isDark = !isDark;
+            document.body.setAttribute('data-theme', isDark ? 'dark' : '');
+            document.getElementById('t-icon').innerText = isDark ? '☀' : '☾';
+        }
+
+        // Bloqueia scroll elástico no iOS para manter foco na escrita
+        document.addEventListener('touchmove', function(e) {
+            if (document.getElementById('prayer-ui').style.display === 'flex') {
+                if (e.target.tagName !== 'TEXTAREA') e.preventDefault();
+            }
+        }, { passive: false });
+    </script>
+</body>
+</html>
+
