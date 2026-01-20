@@ -1,30 +1,36 @@
-<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Hitbodedut</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Courier+Prime&family=Frank+Ruhl+Libre:wght@300;500&display=swap" rel="stylesheet">
+    <title>Hitbodedut - Conversa Sagrada</title>
     
+    <!-- Favicon -->
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2311/2311545.png" type="image/png">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/2311/2311545.png">
+
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Courier+Prime&family=Frank+Ruhl+Libre:wght@300;500&display=swap');
+
         :root {
-            --bg: #f4f1ea;
-            --txt: #1a2a3a;
-            --acc: #003366;
-            --gold: #bfa05f;
-            --card: #ffffff;
+            --bg-color: #f4f1ea;
+            --text-color: #1a2a3a;
+            --accent-color: #003366;
+            --gold-color: #bfa05f;
+            --input-bg: rgba(255, 255, 255, 0.7);
+            --border-style: 1px solid var(--gold-color);
         }
 
         [data-theme="dark"] {
-            --bg: #0d1117; 
-            --txt: #e6edf3;
-            --acc: #58a6ff;
-            --gold: #d2a106;
-            --card: #161b22;
+            --bg-color: #0a0f1c;
+            --text-color: #e0e0e0;
+            --accent-color: #4da6ff;
+            --gold-color: #d4af37;
+            --input-bg: rgba(255, 255, 255, 0.05);
         }
 
-        * { 
-            box-sizing: border-box; 
+        * {
+            box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
         }
 
@@ -32,262 +38,266 @@
             margin: 0;
             padding: 0;
             font-family: 'Frank Ruhl Libre', serif;
-            background-color: var(--bg);
-            color: var(--txt);
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            transition: background 0.5s;
-            overflow: hidden;
-        }
-
-        /* Top Bar exclusiva para o tema */
-        .top-utils {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            z-index: 100;
-        }
-
-        .theme-btn {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--gold);
-            cursor: pointer;
-        }
-
-        .main-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 40px 20px 20px 20px;
-            justify-content: center;
-        }
-
-        /* Home Centralizada */
-        #home-ui {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background 0.5s ease, color 0.5s ease;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 100%;
-            text-align: center;
-            animation: fadeIn 0.8s ease;
+            justify-content: center;
+            overflow: hidden;
         }
 
-        .magen-david {
-            font-size: 2.5rem;
-            color: var(--gold);
-            margin-bottom: 10px;
+        .container {
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         h1 {
             font-family: 'Cinzel', serif;
-            font-size: 2.2rem;
-            color: var(--gold);
-            letter-spacing: 5px;
+            font-size: clamp(1.8rem, 8vw, 2.5rem);
+            color: var(--gold-color);
             margin: 0;
+            letter-spacing: 4px;
         }
 
         .date {
-            font-size: 0.75rem;
+            font-size: 0.85rem;
             opacity: 0.7;
-            text-transform: uppercase;
-            font-family: 'Cinzel', serif;
-            margin-bottom: 30px;
-            letter-spacing: 2px;
+            font-variant: small-caps;
         }
 
         .verse-box {
-            border-top: 1px solid var(--gold);
-            border-bottom: 1px solid var(--gold);
-            padding: 30px 15px;
-            margin-bottom: 40px;
+            border-top: var(--border-style);
+            border-bottom: var(--border-style);
+            padding: 1.2rem;
             font-style: italic;
-            font-size: 1.1rem;
+            font-size: clamp(0.95rem, 4vw, 1.1rem);
+            min-height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             line-height: 1.6;
-            width: 100%;
         }
 
-        .btn {
-            background: none;
-            border: 1px solid var(--acc);
-            color: var(--acc);
-            padding: 15px 35px;
+        .btn-main {
+            background-color: transparent;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 16px 20px;
             font-family: 'Cinzel', serif;
             font-size: 0.9rem;
-            border-radius: 4px;
+            font-weight: bold;
             cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
             transition: 0.3s;
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            width: 100%;
+            max-width: 280px;
+            margin: 0 auto;
         }
 
-        .btn:active {
-            background: var(--acc);
-            color: var(--bg);
+        .btn-main:active {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
         }
 
-        /* Tela de Escrita Limpa */
-        #prayer-ui {
+        #prayer-screen, #message-sent-screen {
             display: none;
             flex-direction: column;
             width: 100%;
-            height: 100%;
-            padding-top: 20px;
-        }
-
-        .prayer-header {
-            display: flex;
-            justify-content: flex-end; /* Botão de enviar à direita */
-            width: 100%;
-            margin-bottom: 15px;
+            align-items: center;
         }
 
         textarea {
             width: 100%;
-            flex: 1;
-            background: var(--card);
-            border: 1px solid var(--gold);
-            padding: 20px;
+            height: 40vh;
+            background: var(--input-bg);
+            border: var(--border-style);
+            color: var(--text-color);
             font-family: 'Courier Prime', monospace;
-            font-size: 18px; 
-            color: var(--txt);
-            border-radius: 8px;
-            outline: none;
+            font-size: 1.1rem;
+            padding: 20px;
             resize: none;
-            box-shadow: inset 0 0 15px rgba(0,0,0,0.02);
+            outline: none;
+            border-radius: 12px;
+            margin-bottom: 20px;
         }
 
-        /* Mensagem de Sucesso Destacada */
-        #success {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            height: 100%;
-            animation: fadeIn 1.5s ease;
-        }
-
-        #success h2 {
-            font-family: 'Cinzel', serif;
-            color: var(--gold);
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-        }
-
-        #success p {
-            font-size: 1.2rem;
-            font-style: italic;
-            max-width: 80%;
-            line-height: 1.5;
-        }
-
-        /* Efeito de Fogo */
-        @keyframes burnEffect {
-            0% { opacity: 1; filter: blur(0); transform: scale(1); }
-            30% { color: #ff4500; text-shadow: 0 0 15px orange; }
-            100% { transform: translateY(-120px) scale(1.1); filter: blur(25px); opacity: 0; }
+        @keyframes holyFire {
+            0% { transform: scale(1); opacity: 1; }
+            40% { color: #ff4500; text-shadow: 0 0 15px #ff8c00; }
+            100% { transform: translateY(-60px) scale(0.95); filter: blur(20px); opacity: 0; }
         }
 
         .burning {
-            animation: burnEffect 2.8s forwards ease-in;
+            animation: holyFire 2.2s forwards ease-in-out;
             pointer-events: none;
         }
 
+        .theme-toggle {
+            margin-top: 10px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--gold-color);
+        }
+
+        #success-text {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-color);
+            font-size: clamp(1.1rem, 5vw, 1.4rem);
+            line-height: 1.4;
+            padding: 20px;
+        }
+
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .fade-in { animation: fadeIn 1s forwards; }
 
     </style>
 </head>
 <body>
 
-    <div class="top-utils">
-        <button class="theme-btn" onclick="toggleTheme()" id="t-icon">☾</button>
+    <!-- Home -->
+    <div id="home-screen" class="container fade-in">
+        <div style="font-size: 1.5rem; color: var(--gold-color);">✡</div>
+        <h1>HITBODEDUT</h1>
+        <div class="date" id="current-date"></div>
+        
+        <div class="verse-box">
+            <span id="daily-verse">Buscando sabedoria...</span>
+        </div>
+
+        <button class="btn-main" onclick="startPrayer()">Conversar com Deus</button>
+        <div class="theme-toggle" onclick="toggleTheme()" id="theme-icon">☾</div>
     </div>
 
-    <div class="main-container">
-        
-        <!-- HOME CENTRALIZADA -->
-        <div id="home-ui">
-            <div class="magen-david">✡</div>
-            <h1>HITBODEDUT</h1>
-            <div class="date" id="date-el"></div>
-            <div class="verse-box" id="verse-el">"Conectando..."</div>
-            <button class="btn" onclick="goPrayer()">Conversar com Deus</button>
-        </div>
+    <!-- Oração -->
+    <div id="prayer-screen" class="container">
+        <textarea id="prayer-text" placeholder="Fale abertamente..."></textarea>
+        <button id="send-btn" class="btn-main" onclick="sendPrayer()">Entregar Oração</button>
+    </div>
 
-        <!-- TELA ORAÇÃO (SEM TEXTOS EXTRAS) -->
-        <div id="prayer-ui">
-            <div class="prayer-header">
-                <button class="btn" onclick="sendIt()" id="send-btn">Enviar Oração</button>
-            </div>
-            <textarea id="msg-input" placeholder="Diga o que está no seu coração..."></textarea>
-        </div>
-
-        <!-- SUCESSO DESTACADO -->
-        <div id="success">
-            <div style="font-size: 2rem; color: var(--gold); margin-bottom: 20px;">✡</div>
-            <h2>Oração Enviada</h2>
-            <p>Sua oração ascendeu aos céus como incenso suave.</p>
-        </div>
+    <!-- Sucesso -->
+    <div id="message-sent-screen" class="container fade-in">
+        <div id="success-text">Sua oração ascendeu aos céus como incenso suave.</div>
     </div>
 
     <script>
-        // Data e Versos
-        const options = { weekday: 'long', day: 'numeric', month: 'long' };
-        document.getElementById('date-el').innerText = new Date().toLocaleDateString('pt-BR', options);
-        
-        const vs = [
-            "O Senhor está perto dos que têm o coração quebrantado. (Salmos 34:18)",
-            "Aquietai-vos, e sabei que eu sou Deus. (Salmos 46:10)",
-            "Espera no Senhor, anima-te. (Salmos 27:14)",
-            "O Senhor é o meu pastor, nada me faltará. (Salmos 23:1)",
-            "Confia no Senhor de todo o teu coração. (Provérbios 3:5)",
-            "Lâmpada para os meus pés é a tua palavra. (Salmos 119:105)"
-        ];
-        document.getElementById('verse-el').innerText = vs[Math.floor(Math.random()*vs.length)];
+        const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('current-date').innerText = new Date().toLocaleDateString('pt-BR', dateOptions);
 
-        function goPrayer() {
-            document.getElementById('home-ui').style.display = 'none';
-            document.getElementById('prayer-ui').style.display = 'flex';
-            // Timeout para garantir foco no mobile
-            setTimeout(() => document.getElementById('msg-input').focus(), 200);
+        // Lista de 42 frases (Rabinos, Provérbios, Eclesiastes e Novo Testamento)
+        const verses = [
+            // Rabinos e Mestres
+            "O mundo inteiro é uma ponte muito estreita, o importante é não ter medo. (Rabbi Nachman)",
+            "Onde quer que você esteja, Deus está lá. (Rabbi Nachman)",
+            "Se eu não for por mim, quem será? Se eu for só por mim, quem sou eu? (Hillel)",
+            "Deus está onde o deixamos entrar. (Kotzker Rebbe)",
+            "Onde quer que um homem vá, Deus o espera lá. (Baal Shem Tov)",
+            "Um pouco de luz afasta muita escuridão. (Rabbi Shneur Zalman)",
+            "A gratidão é a chave para a abundância. (Rabbi Nachman)",
+            "A alegria não é um luxo, é uma necessidade. (Rabbi Nachman)",
+            "Se você acredita que pode destruir, acredite que pode consertar. (Rabbi Nachman)",
+            "Aquele que é rico é aquele que está satisfeito com o que tem. (Hillel)",
+            "O silêncio é a cerca em volta da sabedoria. (Pirkei Avot)",
+            "Não olhes para o jarro, mas para o que ele contém. (Pirkei Avot)",
+            
+            // Provérbios
+            "Confia no Senhor de todo o teu coração e não te estribes no teu próprio entendimento. (Provérbios 3:5)",
+            "O coração alegre serve de bom remédio, mas o espírito abatido seca os ossos. (Provérbios 17:22)",
+            "A resposta branda desvia o furor, mas a palavra dura suscita a ira. (Provérbios 15:1)",
+            "O temor do Senhor é o princípio da sabedoria. (Provérbios 1:7)",
+            "Como o ferro com o ferro se afia, assim o homem afia o rosto do seu amigo. (Provérbios 27:17)",
+            "O que guarda a sua boca conserva a sua alma. (Provérbios 13:3)",
+            "Sobre tudo o que se deve guardar, guarda o teu coração. (Provérbios 4:23)",
+            "A esperança adiada faz adoecer o coração. (Provérbios 13:12)",
+            "Os caminhos do homem estão diante dos olhos do Senhor. (Provérbios 5:21)",
+            "O homem planeja o seu caminho, mas o Senhor lhe dirige os passos. (Provérbios 16:9)",
+            
+            // Eclesiastes
+            "Tudo tem o seu tempo determinado, e há tempo para todo o propósito debaixo do céu. (Eclesiastes 3:1)",
+            "Melhor é o fim das coisas do que o princípio delas. (Eclesiastes 7:8)",
+            "O que foi, isso é o que há de ser; e o que se fez, isso se fará. (Eclesiastes 1:9)",
+            "Dois são melhores do que um... pois se um cair, o outro levanta o seu companheiro. (Eclesiastes 4:9-10)",
+            "A sabedoria é melhor do que as armas de guerra. (Eclesiastes 9:18)",
+            "Doce é o sono do trabalhador. (Eclesiastes 5:12)",
+            "Deus está no céu, e tu estás sobre a terra; por isso sejam poucas as tuas palavras. (Eclesiastes 5:2)",
+            
+            // Novo Testamento
+            "Bem-aventurados os puros de coração, porque eles verão a Deus. (Mateus 5:8)",
+            "Vinde a mim, todos os que estais cansados e oprimidos, e eu vos aliviarei. (Mateus 11:28)",
+            "Tudo posso naquele que me fortalece. (Filipenses 4:13)",
+            "O amor nunca falha. (1 Coríntios 13:8)",
+            "Se Deus é por nós, quem será contra nós? (Romanos 8:31)",
+            "Não andeis ansiosos por coisa alguma. (Filipenses 4:6)",
+            "Procurai e achareis; batei e abrir-se-vos-á. (Mateus 7:7)",
+            "Onde está o teu tesouro, aí estará também o teu coração. (Mateus 6:21)",
+            "A paz de Deus, que excede todo o entendimento, guardará os vossos corações. (Filipenses 4:7)",
+            "Pois em Deus vivemos, nos movemos e existimos. (Atos 17:28)",
+            "Conhecereis a verdade, e a verdade vos libertará. (João 8:32)",
+            "Deixo-vos a paz, a minha paz vos dou. (João 14:27)",
+            "A fé é o firme fundamento das coisas que se esperam. (Hebreus 11:1)"
+        ];
+        
+        function updateVerse() {
+            document.getElementById('daily-verse').innerText = verses[Math.floor(Math.random() * verses.length)];
+        }
+        updateVerse();
+
+        function startPrayer() {
+            document.getElementById('home-screen').style.display = 'none';
+            document.getElementById('prayer-screen').style.display = 'flex';
+            document.getElementById('prayer-text').focus();
         }
 
-        function sendIt() {
-            const input = document.getElementById('msg-input');
+        function sendPrayer() {
+            const textarea = document.getElementById('prayer-text');
             const btn = document.getElementById('send-btn');
-            if(!input.value.trim()) return;
+            
+            if (!textarea.value.trim()) return;
 
-            input.classList.add('burning');
+            textarea.readOnly = true;
             btn.style.display = 'none';
+            textarea.classList.add('burning');
 
             setTimeout(() => {
-                document.getElementById('prayer-ui').style.display = 'none';
-                document.getElementById('success').style.display = 'flex';
-                // Retorna à home após um tempo para nova conversa
-                setTimeout(() => location.reload(), 5000);
-            }, 2600);
+                document.getElementById('prayer-screen').style.display = 'none';
+                document.getElementById('message-sent-screen').style.display = 'flex';
+                
+                // Volta para a home resetando os estados sem recarregar a página
+                setTimeout(() => {
+                    document.getElementById('message-sent-screen').style.display = 'none';
+                    textarea.classList.remove('burning');
+                    textarea.value = "";
+                    textarea.readOnly = false;
+                    textarea.style.display = 'block';
+                    btn.style.display = 'block';
+                    updateVerse();
+                    document.getElementById('home-screen').style.display = 'flex';
+                }, 4000);
+            }, 2200);
         }
 
-        let isDark = false;
         function toggleTheme() {
-            isDark = !isDark;
-            document.body.setAttribute('data-theme', isDark ? 'dark' : '');
-            document.getElementById('t-icon').innerText = isDark ? '☀' : '☾';
-        }
-
-        // Bloqueia scroll elástico no iOS para manter foco na escrita
-        document.addEventListener('touchmove', function(e) {
-            if (document.getElementById('prayer-ui').style.display === 'flex') {
-                if (e.target.tagName !== 'TEXTAREA') e.preventDefault();
+            const body = document.body;
+            const icon = document.getElementById('theme-icon');
+            const isDark = body.hasAttribute('data-theme');
+            
+            if (isDark) {
+                body.removeAttribute('data-theme');
+                icon.innerText = "☾";
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                icon.innerText = "☀";
             }
-        }, { passive: false });
+        }
     </script>
 </body>
 </html>
-
