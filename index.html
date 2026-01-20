@@ -3,11 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Hitbodedut - Conversa Sagrada</title>
+    <title>Hitbodedut</title>
     
-    <!-- Favicon -->
-    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2311/2311545.png" type="image/png">
-    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/2311/2311545.png">
+    <!-- Meta tags para funcionar como App no iPhone -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Hitbodedut">
+
+    <!-- Favicon (Ícone de Estrela Judaica Dourada) -->
+    <link rel="icon" type="image/png" href="https://img.icons8.com/color/48/star-of-david.png">
+    <link rel="apple-touch-icon" href="https://img.icons8.com/color/144/star-of-david.png">
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Courier+Prime&family=Frank+Ruhl+Libre:wght@300;500&display=swap');
@@ -193,9 +198,7 @@
         const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         document.getElementById('current-date').innerText = new Date().toLocaleDateString('pt-BR', dateOptions);
 
-        // Lista de 42 frases (Rabinos, Provérbios, Eclesiastes e Novo Testamento)
         const verses = [
-            // Rabinos e Mestres
             "O mundo inteiro é uma ponte muito estreita, o importante é não ter medo. (Rabbi Nachman)",
             "Onde quer que você esteja, Deus está lá. (Rabbi Nachman)",
             "Se eu não for por mim, quem será? Se eu for só por mim, quem sou eu? (Hillel)",
@@ -208,8 +211,6 @@
             "Aquele que é rico é aquele que está satisfeito com o que tem. (Hillel)",
             "O silêncio é a cerca em volta da sabedoria. (Pirkei Avot)",
             "Não olhes para o jarro, mas para o que ele contém. (Pirkei Avot)",
-            
-            // Provérbios
             "Confia no Senhor de todo o teu coração e não te estribes no teu próprio entendimento. (Provérbios 3:5)",
             "O coração alegre serve de bom remédio, mas o espírito abatido seca os ossos. (Provérbios 17:22)",
             "A resposta branda desvia o furor, mas a palavra dura suscita a ira. (Provérbios 15:1)",
@@ -220,8 +221,6 @@
             "A esperança adiada faz adoecer o coração. (Provérbios 13:12)",
             "Os caminhos do homem estão diante dos olhos do Senhor. (Provérbios 5:21)",
             "O homem planeja o seu caminho, mas o Senhor lhe dirige os passos. (Provérbios 16:9)",
-            
-            // Eclesiastes
             "Tudo tem o seu tempo determinado, e há tempo para todo o propósito debaixo do céu. (Eclesiastes 3:1)",
             "Melhor é o fim das coisas do que o princípio delas. (Eclesiastes 7:8)",
             "O que foi, isso é o que há de ser; e o que se fez, isso se fará. (Eclesiastes 1:9)",
@@ -229,8 +228,6 @@
             "A sabedoria é melhor do que as armas de guerra. (Eclesiastes 9:18)",
             "Doce é o sono do trabalhador. (Eclesiastes 5:12)",
             "Deus está no céu, e tu estás sobre a terra; por isso sejam poucas as tuas palavras. (Eclesiastes 5:2)",
-            
-            // Novo Testamento
             "Bem-aventurados os puros de coração, porque eles verão a Deus. (Mateus 5:8)",
             "Vinde a mim, todos os que estais cansados e oprimidos, e eu vos aliviarei. (Mateus 11:28)",
             "Tudo posso naquele que me fortalece. (Filipenses 4:13)",
@@ -271,13 +268,11 @@
                 document.getElementById('prayer-screen').style.display = 'none';
                 document.getElementById('message-sent-screen').style.display = 'flex';
                 
-                // Volta para a home resetando os estados sem recarregar a página
                 setTimeout(() => {
                     document.getElementById('message-sent-screen').style.display = 'none';
                     textarea.classList.remove('burning');
                     textarea.value = "";
                     textarea.readOnly = false;
-                    textarea.style.display = 'block';
                     btn.style.display = 'block';
                     updateVerse();
                     document.getElementById('home-screen').style.display = 'flex';
